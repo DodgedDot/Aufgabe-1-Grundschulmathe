@@ -1,14 +1,20 @@
-alert('Grundschulmathe');
+alert('Grundschulmathe')
 
-const a = random20();
-const b = random20();
+rightAnswers = 0
 
-let result = prompt(`Wieviel ist ${a} + ${b}?`);
-
-result = parseInt(result, 10);
-
-if(result === a + b){
-    alert('Richtig');
-}else{
-    alert('Falsch');
+for(i = 0; i < 5; i++){
+    const a = random20()
+    const b = random20()
+    
+    let result = prompt(`Wieviel ist ${a} + ${b}?`);
+    
+    result = parseInt(result, 10);
+    
+    if(result === a + b){
+        rightAnswers++
+        alert(`Richtig ${rightAnswers}/5`)
+        
+    }else{
+        alert(`Falsch ${rightAnswers}/5`)
+    }
 }
