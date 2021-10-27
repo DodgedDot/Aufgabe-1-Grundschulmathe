@@ -1,5 +1,6 @@
 alert('Grundschulmathe')
 
+const random20 = () => {return Math.floor(Math.random() * (20) + 1)}
 rightAnswers = 0
 
 for(i = 0; i < 5; i++){
