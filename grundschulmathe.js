@@ -1,5 +1,7 @@
 alert('Grundschulmathe');
 
+const random20 = () => {return Math.floor(Math.random() * (20) + 1)}
+
 const a = random20();
 const b = random20();
 
