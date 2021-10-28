@@ -1,48 +1,67 @@
 alert('Grundschulmathe')
 
-const randomNumber = (max) => {return Math.floor(Math.random() * (max) + 1)}
-
 rightAnswers = 0
 
-const calculation = (maxA, maxB, operator) => {
+//Erstellt zufällige Zahl zwischen 1 und dem übergebenen Maximum
+var randomNumber = (max) => {return Math.floor(Math.random() * (max) + 1)}
+
+var calculation = (maxA, maxB, operator) => {
+    rightAnswers = 0
     for(i = 0; i < 5; i++){
-        const a = randomNumber(maxA)
-        const b = randomNumber(maxB)
+        var a = randomNumber(maxA)
+        var b = randomNumber(maxB)
+
+        var operationResult = () => {switch(operator){
+            case "+": 
+                return a + b;
+            
+            case "-":
+                b = randomNumber(a)
+                return a - b;
         
+            case "*":
+                return a * b;
+        
+            case "/":
+                return a / b - ((a%b)/b);
+        
+            }
+        }
+
+        //operationResult muss vor prompt aufgerufen werden, da sonst bei der Subtraktion b zu spät aktualisiert wird
+        rightResult = operationResult()
+
+        //Nutzereingabe
         let result = prompt(`Wieviel ist ${a} ${operator} ${b}?`);
-        
         result = parseInt(result, 10);
-        
-        if(result === a $operator b){
+
+        //Überprüfung, ob Nutzereingabe gleich dem richtigen Ergebnis, und Nutzerfeedback
+        if(result === rightResult){
             rightAnswers++
             alert(`Richtig ${rightAnswers}/5`)
             
         }else{
             alert(`Falsch ${rightAnswers}/5`)
+
         }
     }
 
 }
 
+//level-1: Addition
+calculation(20, 20, "+")
 
-
+//level-2: Subtraction
 if(rightAnswers > 3){
-    rightAnswers = 0
-    for(i = 0; i < 5; i++){
-        const a = randomNumber(20)
-        const b = randomNumber(a)
+    calculation(20, 20, "-")    
+}
 
-        
-        let result = prompt(`Wieviel ist ${a} - ${b}?`);
-        
-        result = parseInt(result, 10);
-        
-        if(result === a - b){
-            rightAnswers++
-            alert(`Richtig ${rightAnswers}/5`)
-            
-        }else{
-            alert(`Falsch ${rightAnswers}/5`)
-        }
-    }
+//level-3: Multiplication
+if(rightAnswers > 3){
+    calculation(20, 20, "*")
+}
+
+//level-4: Division
+if(rightAnswers > 3){
+    calculation(20, 20, "/")
 }
