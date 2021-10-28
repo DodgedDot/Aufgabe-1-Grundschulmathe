@@ -5,12 +5,13 @@ rightAnswers = 0
 //Erstellt zufällige Zahl zwischen 1 und dem übergebenen Maximum
 var randomNumber = (max) => {return Math.floor(Math.random() * (max) + 1)}
 
-var calculation = (maxA, maxB, operator) => {
+var calculation = (operator) => {
     rightAnswers = 0
     for(i = 0; i < 5; i++){
-        var a = randomNumber(maxA)
-        var b = randomNumber(maxB)
+        var a = randomNumber(20)
+        var b = randomNumber(20)
 
+        //Gibt das Ergebnis der jeweiligen Rechenoperation basierend auf dem String des Rechenoperators zurück
         var operationResult = () => {switch(operator){
             case "+": 
                 return a + b;
@@ -49,19 +50,19 @@ var calculation = (maxA, maxB, operator) => {
 }
 
 //level-1: Addition
-calculation(20, 20, "+")
+calculation("+")
 
-//level-2: Subtraction
+//level-2: Subtraktion
 if(rightAnswers > 3){
-    calculation(20, 20, "-")    
+    calculation("-")    
 }
 
-//level-3: Multiplication
+//level-3: Multiplikation
 if(rightAnswers > 3){
-    calculation(20, 20, "*")
+    calculation("*")
 }
 
 //level-4: Division
 if(rightAnswers > 3){
-    calculation(20, 20, "/")
+    calculation("/")
 }
