@@ -10,40 +10,34 @@ var calculation = (operator) => {
     for(i = 0; i < 5; i++){
         var a = randomNumber(20)
         var b = randomNumber(20)
+        var c = a * b
 
-        //Gibt das Ergebnis der jeweiligen Rechenoperation basierend auf dem String des Rechenoperators zurück
-        var operationResult = () => {switch(operator){
-            case "+": 
-                return a + b;
-            
-            case "-":
-                b = randomNumber(a)
-                return a - b;
-        
-            case "*":
-                return a * b;
-        
-            case "/":
-                return a / b - ((a%b)/b);
-        
-            }
+        var operationResult = {
+            '+': a + b,
+            '-': (a > b) ? a - b : b - a,
+            '*': a * b,
+            '/': c/b
         }
 
-        //operationResult muss vor prompt aufgerufen werden, da sonst bei der Subtraktion b zu spät aktualisiert wird
-        rightResult = operationResult()
+        var operationString = {
+            '+': `${a} + ${b}`,
+            '-': (a > b) ? `${a} - ${b}` : `${b} - ${a}`,
+            '*': `${a} * ${b}`,  
+            '/': `${c} / ${b}`
+        }
+        
+        let rightResult = operationResult[operator]
 
         //Nutzereingabe
-        let result = prompt(`Wieviel ist ${a} ${operator} ${b}?`);
+        let result = prompt(`Wieviel ist ${operationString[operator]}?`)
         result = parseInt(result, 10);
 
         //Überprüfung, ob Nutzereingabe gleich dem richtigen Ergebnis, und Nutzerfeedback
         if(result === rightResult){
             rightAnswers++
             alert(`Richtig ${rightAnswers}/5`)
-            
         }else{
             alert(`Falsch ${rightAnswers}/5`)
-
         }
     }
 
